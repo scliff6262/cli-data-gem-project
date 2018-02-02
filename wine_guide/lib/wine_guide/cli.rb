@@ -4,7 +4,7 @@ class WineGuide::CLI
     puts "Welcome to CLI Wine Guide!"
     section_menu
     section_selector
-    wine_selector
+    wine_profile([],wine_selector)
   end
 
   def section_menu
@@ -43,13 +43,26 @@ class WineGuide::CLI
     user_input = gets.chomp.to_i
     case user_input
     when 1..100
-      puts "#{user_input}. Chateau Milon"
       user_input.to_i
     else
       puts "Invalid entry. Must be a number between 1-100."
       wine_selector
     end
   end
+
+  def wine_profile(wine_objects, wine_rank)
+    #selected_wine = nil
+    #wine_objects.find {|wine| selected_wine = wine if wine.rank == wine_rank}
+    puts "#{wine_rank}. Chateau Milon "
+    puts "\nAbout: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+    sunt in culpa qui officia deserunt mollit anim id est laborum."
+    puts "\nVintage: 2014"
+    puts "Price: $100"
+    puts "Wine Spectator Score: 98"
+  end
+
 
   def thank_you
     puts "Thanks for using our Wine Guide. See you soon!"
