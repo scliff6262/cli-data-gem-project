@@ -21,15 +21,16 @@ class WineGuide::CLI
 
   def section_selector#(ranked_wine)
     user_input = ""
+    puts "Select a number (1-10) for which section of the 'Top 100 Wines' that you would like to view, or select type 'end' to exit."
     while user_input.downcase != "end"
-      puts "Select a number (1-10) for which section of the 'Top 100 Wines' that you would like to view, or select type 'end' to exit."
       user_input = gets.chomp
-        if user_input == "1"
-          puts "Montepeloso a Quo"
-          ###### rankings (user_input * 10 - 9) -- (user_input * 10)
-          #ranked_wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank <= 10}
-        elsif user_input == "2"
-          puts "Stag's Leap"
+        if user_input.to_i == 1..10
+          counter = 9
+          while counter >= 0
+            puts "#{(user_input.to_i * 10 - counter)}. First Wine"
+            counter -= 1
+          end
+          self.wine_selector
         else puts "Invalid entry, try again."
       end
     end
@@ -38,6 +39,14 @@ class WineGuide::CLI
   def wine_selector
     puts "Select the wine's ranking to learn more:"
     user_input = gets.chomp.to_i
+    case user_input
+    when 1..100
+      puts "#{user_input}. Chateau Milon"
+    else
+      puts "Invalid entry. Must be a number between 1-100."
+      wine_selector
+    end
   end
+
 
 end
