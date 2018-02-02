@@ -4,6 +4,7 @@ class WineGuide::CLI
     puts "Welcome to CLI Wine Guide!"
     section_menu
     section_selector
+    wine_selector
   end
 
   def section_menu
@@ -22,17 +23,18 @@ class WineGuide::CLI
   def section_selector#(ranked_wine)
     user_input = ""
     puts "Select a number (1-10) for which section of the 'Top 100 Wines' that you would like to view, or select type 'end' to exit."
-    while user_input.downcase != "end"
       user_input = gets.chomp
-        if user_input.to_i == 1..10
-          counter = 9
-          while counter >= 0
-            puts "#{(user_input.to_i * 10 - counter)}. First Wine"
-            counter -= 1
-          end
-          self.wine_selector
-        else puts "Invalid entry, try again."
-      end
+      if user_input.to_i >= 1 && user_input.to_i <= 10
+        counter = 9
+        while counter >= 0
+          puts "#{(user_input.to_i * 10 - counter)}. First Wine"
+          counter -= 1
+        end
+      elsif user_input.downcase == "end"
+        thank_you
+      else
+        puts "Invalid entry, try again."
+        section_selector
     end
   end
 
@@ -42,10 +44,16 @@ class WineGuide::CLI
     case user_input
     when 1..100
       puts "#{user_input}. Chateau Milon"
+      user_input.to_i
     else
       puts "Invalid entry. Must be a number between 1-100."
       wine_selector
     end
+  end
+
+  def thank_you
+    puts "Thanks for using our Wine Guide. See you soon!"
+    abort
   end
 
 
