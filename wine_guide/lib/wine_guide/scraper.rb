@@ -1,2 +1,2 @@
-class Scraper
-end 
+class Wine::Scraper
+end
