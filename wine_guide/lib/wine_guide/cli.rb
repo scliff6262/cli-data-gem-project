@@ -1,11 +1,12 @@
 class WineGuide::CLI
 
-  def begin
+  def run
     puts "Welcome to CLI Wine Guide!"
+    section_menu
+    section_selector
   end
 
-  def which_section?
-    puts "Select a number below for which section of the 'Top 100 Wines' that you would like to view:"
+  def section_menu
     puts "1. 1-10"
     puts "2. 11-20"
     puts "3. 21-30"
@@ -18,35 +19,25 @@ class WineGuide::CLI
     puts "10. 91-100"
   end
 
-  def section_selector
-    user_input = gets.chomp.to_i
-    while user_input.downcase != "exit"
-      if user_input == 1
-        wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank <= 10}
-      elsif user_input == 2
-          wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank == 11..20}
-      elsif user_input == 3
-          wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank == 21..30}
-      elsif user_input == 4
-          wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank == 31..40}
-      elsif user_input == 5
-          wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank == 41..50}
-      elsif user_input == 6
-          wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank == 51..60}
-      elsif user_input == 7
-          wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank == 61..70}
-      elsif user_input == 8
-          wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank == 71..80}
-      elsif user_input == 9
-          wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank == 81..90}
-      elsif user_input == 10
-          wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank == 91..100}
-      elsif user_input.downcase == "exit"
-        puts "Thanks for viewing our Wine Guide! Please come back soon."
-      else puts "Please enter a number 1-10 or 'exit'"
+  def section_selector#(ranked_wine)
+    user_input = ""
+    while user_input.downcase != "end"
+      puts "Select a number (1-10) for which section of the 'Top 100 Wines' that you would like to view, or select type 'end' to exit."
+      user_input = gets.chomp
+        if user_input == "1"
+          puts "Montepeloso a Quo"
+          ###### rankings (user_input * 10 - 9) -- (user_input * 10)
+          #ranked_wine.all.each_with_index{|wine_obj| puts "#{wine_obj.rank}. #{wine_obj.name}" if wine_obj.rank <= 10}
+        elsif user_input == "2"
+          puts "Stag's Leap"
+        else puts "Invalid entry, try again."
       end
+    end
   end
 
   def wine_selector
-
+    puts "Select the wine's ranking to learn more:"
+    user_input = gets.chomp.to_i
   end
+
+end
