@@ -5,6 +5,7 @@ class WineGuide::CLI
     section_menu
     section_selector
     wine_profile([],wine_selector)
+    another_wine?
   end
 
   def section_menu
@@ -27,7 +28,7 @@ class WineGuide::CLI
       if user_input.to_i >= 1 && user_input.to_i <= 10
         counter = 9
         while counter >= 0
-          puts "#{(user_input.to_i * 10 - counter)}. First Wine"
+          puts "#{(user_input.to_i * 10 - counter)}. *wine name here*"
           counter -= 1
         end
       elsif user_input.downcase == "end"
@@ -61,6 +62,18 @@ class WineGuide::CLI
     puts "\nVintage: 2014"
     puts "Price: $100"
     puts "Wine Spectator Score: 98"
+  end
+
+  def another_wine?
+    Time.new
+    sleep 3
+    puts "Would you like to view another wine? (y/n)"
+    user_input = gets.chomp
+    if user_input.downcase == "y"
+      run
+    elsif user_input.downcase == "n"
+      thank_you
+    end
   end
 
 
