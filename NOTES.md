@@ -1,6 +1,7 @@
 # cli-data-gem-project
 CLI Data Gem Project - Flatiron School
 
+url = http://top100.winespectator.com/lists/
 
 bin/
 Welcome to CLI Wine Guide!

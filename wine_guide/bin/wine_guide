@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require './lib/wine_guide.rb'
+
+WineGuide::CLI.new.run

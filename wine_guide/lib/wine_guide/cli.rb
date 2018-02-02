@@ -5,7 +5,7 @@ class WineGuide::CLI
     section_menu
     section_selector
     wine_profile([],wine_selector)
-    another_wine?
+    another_wine
   end
 
   def section_menu
@@ -55,7 +55,8 @@ class WineGuide::CLI
     #selected_wine = nil
     #wine_objects.find {|wine| selected_wine = wine if wine.rank == wine_rank}
     puts "#{wine_rank}. Chateau Milon "
-    puts "\nAbout: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    puts "\nAbout:
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
     sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -64,15 +65,17 @@ class WineGuide::CLI
     puts "Wine Spectator Score: 98"
   end
 
-  def another_wine?
+  def another_wine
     Time.new
-    sleep 3
     puts "Would you like to view another wine? (y/n)"
     user_input = gets.chomp
     if user_input.downcase == "y"
       run
     elsif user_input.downcase == "n"
       thank_you
+    else
+      puts "Invalid entry."
+      another_wine
     end
   end
 
