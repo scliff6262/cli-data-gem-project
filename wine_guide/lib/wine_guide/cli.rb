@@ -1,7 +1,10 @@
-class WineGuide::CLI
+require "pry"
+
+class CLI
 
   def run
     puts "Welcome to CLI Wine Guide!"
+    @wine_list = Wine.create_wine_obj
     section_menu
     section_selector
     wine_profile([],wine_selector)
@@ -22,13 +25,15 @@ class WineGuide::CLI
   end
 
   def section_selector#(ranked_wine)
+
     user_input = ""
     puts "Select a number (1-10) for which section of the 'Top 100 Wines' that you would like to view, or select type 'end' to exit."
       user_input = gets.chomp
       if user_input.to_i >= 1 && user_input.to_i <= 10
         counter = 9
         while counter >= 0
-          puts "#{(user_input.to_i * 10 - counter)}. *wine name here*"
+          current_rank = (user_input.to_i * 10 - counter)
+          puts "#{current_rank}. #{list_wine_name(current_rank)}"
           counter -= 1
         end
       elsif user_input.downcase == "end"
@@ -37,6 +42,11 @@ class WineGuide::CLI
         puts "Invalid entry, try again."
         section_selector
     end
+  end
+
+  def list_wine_name(current_rank)
+    wine_obj_to_list = @wine_list.detect {|wine_obj| wine_obj.rank == current_rank}
+    wine_obj_to_list.name
   end
 
   def wine_selector
@@ -66,7 +76,7 @@ class WineGuide::CLI
   end
 
   def another_wine
-    Time.new
+    #Time.new
     puts "Would you like to view another wine? (y/n)"
     user_input = gets.chomp
     if user_input.downcase == "y"
