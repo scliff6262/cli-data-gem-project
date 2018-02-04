@@ -1,7 +1,9 @@
+require 'nokogiri'
+require 'open-uri'
 require_relative "./wine_guide/version"
-require_relative './wine_guide/cli'
-require_relative './wine_guide/wine'
-require_relative './wine_guide/scraper'
+require_relative './wine_guide/cli.rb'
+require_relative './wine_guide/wine.rb'
+require_relative './wine_guide/scraper.rb'
 
 
 

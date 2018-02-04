@@ -46,7 +46,7 @@ class CLI
 
   def list_wine_name(current_rank)
     wine_obj_to_list = @wine_list.detect {|wine_obj| wine_obj.rank == current_rank}
-    wine_obj_to_list.name
+    wine_obj_to_list.name unless wine_obj_to_list == nil 
   end
 
   def wine_selector
