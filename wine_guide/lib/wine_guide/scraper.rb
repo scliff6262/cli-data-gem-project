@@ -5,27 +5,21 @@ require 'pry'
 class Scraper
 
   def self.scrape_top_100(url)
-    wine_hashes = [] 
+    wine_hashes = []
     html = Nokogiri::HTML(open(url))
-    binding.pry
-
+    wine_cards = html.css(".tasting_note").each do  |each_wine|
+    wine_hash = {}
+    wine_hash["wine_name"] = each_wine.css("h3").text.match(/\D+/)[0]
+    wine_hash["wine_vintage"] = each_wine.css(".vintage").text
+    wine_hash["wine_about"] = each_wine.css(".description").text
+    wine_hash["wine_country"] = each_wine.css(".country").text
+    wine_hash["wine_region"] = each_wine.css(".region").text
+    wine_hash["wine_score"] = each_wine.css(".count").text
+    wine_hashes << wine_hash
+    end
+    wine_hashes
   end
 
 end
 
 Scraper.scrape_top_100("https://www.jamessuckling.com/wine-tasting-reports/top-100-wines-2017")
-
-# /\s\d+/ highlight Vintage
-# /\D/ highlight text only
-# Use index +1 for Suckling rank
-
-wine_cards = html.css(".tasting_note").each do  |each_wine|
-
-wine_name = .css("h3").text.match(/\D+/)[0]
-wine_vintage = css(".vintage").text
-wine_about = .css(".description").text
-wine_country = .css(".country").text
-wine_region = .css(".region").text
-wine_score = .css(".count").text
-
-end
