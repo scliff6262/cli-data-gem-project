@@ -7,7 +7,7 @@ class CLI
     #@wine_list = Wine.create_wine_obj
     section_menu
     section_selector
-    wine_profile(Wine.all,wine_selector)
+    wine_profile(Wine.all, wine_selector)
     another_wine
   end
 
@@ -62,17 +62,15 @@ class CLI
   end
 
   def wine_profile(wine_objects, wine_rank)
-    #selected_wine = nil
-    #wine_objects.find {|wine| selected_wine = wine if wine.rank == wine_rank}
-    puts "#{wine_rank}. Chateau Milon "
+    this_wine = wine_objects.find {|wine| selected_wine = wine if wine.rank == wine_rank}
+    puts "#{wine_rank}. #{this_wine.name}"
     puts "\nAbout:
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-    sunt in culpa qui officia deserunt mollit anim id est laborum."
-    puts "\nVintage: 2014"
-    puts "Price: $100"
-    puts "Wine Spectator Score: 98"
+    #{this_wine.about}"
+    puts "\nRegion: #{this_wine.region}"
+    puts "Country: #{this_wine.country}"
+    puts "\nVintage: #{this_wine.vintage}"
+    puts "James Suckling Score: #{this_wine.score}"
+
   end
 
   def another_wine
