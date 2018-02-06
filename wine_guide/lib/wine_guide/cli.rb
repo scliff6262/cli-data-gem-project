@@ -4,10 +4,10 @@ class CLI
 
   def run
     puts "Welcome to CLI Wine Guide!"
-    @wine_list = Wine.create_wine_obj
+    #@wine_list = Wine.create_wine_obj
     section_menu
     section_selector
-    wine_profile([],wine_selector)
+    wine_profile(Wine.all,wine_selector)
     another_wine
   end
 
@@ -45,8 +45,8 @@ class CLI
   end
 
   def list_wine_name(current_rank)
-    wine_obj_to_list = @wine_list.detect {|wine_obj| wine_obj.rank == current_rank}
-    wine_obj_to_list.name unless wine_obj_to_list == nil 
+    wine_obj_to_list = Wine.all.detect {|wine_obj| wine_obj.rank == current_rank}
+    wine_obj_to_list.name unless wine_obj_to_list == nil
   end
 
   def wine_selector

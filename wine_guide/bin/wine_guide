@@ -3,4 +3,5 @@
 #require "bundler/setup"
 require './lib/wine_guide.rb'
 
+Wine.create_from_array(Scraper.scrape_top_100("https://www.jamessuckling.com/wine-tasting-reports/top-100-wines-2017"))
 CLI.new.run
